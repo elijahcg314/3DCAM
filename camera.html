@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Live Image Viewer</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f9f9f9;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+            margin-top: 20px;
+            border: 2px solid #ccc;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Live Image Viewer</h1>
+    <p>Refreshing the image every 5 seconds.</p>
+    <img id="liveImage" src="" alt="Live Image">
+    <script>
+        const img = document.getElementById('liveImage');
+        const baseUrl = "https://s3.amazonaws.com/polar3d.com/files/printer/FF039498/r82TYRTQdC2dIk1urjF6yulR-current.jpg";
+        
+        function refreshImage() {
+            const timestamp = new Date().getTime(); // Append timestamp to prevent caching
+            img.src = `${baseUrl}?${timestamp}`;
+        }
+
+        refreshImage(); // Load the image initially
+        setInterval(refreshImage, 5000); // Refresh every 5 seconds
+    </script>
+</body>
+</html>
